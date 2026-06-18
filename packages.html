@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KEMRA - Luxury Stay Packages</title>
+    <!-- Google Fonts: Outfit for English/Numbers -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome for Social Icons & Booking Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Premium Packages Styles */
+        .packages-hero {
+            position: relative;
+            min-height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url('bk.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding-top: 80px;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .packages-hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.7) 100%);
+            z-index: -1;
+        }
+
+        .packages-hero h1 {
+            font-size: 3.5rem;
+            color: var(--text-light);
+            font-weight: 800;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            letter-spacing: 1px;
+        }
+
+        .packages-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            align-items: stretch;
+            margin-top: 40px;
+        }
+
+        .package-card {
+            background: #ffffff;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            padding: 40px 32px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            overflow: hidden;
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+
+        /* Highlighting All-Inclusive - Uniform Styles */
+        .package-card.featured {
+            border: 1px solid var(--border-color);
+            transform: none;
+        }
+
+        .package-card.featured:hover {
+            transform: translateY(-10px);
+        }
+
+        .badge-featured {
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: var(--accent-color);
+            color: var(--text-dark);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 8px 40px;
+            transform: rotate(45deg);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .package-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background: rgba(0, 59, 149, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .package-icon i {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+
+        .package-card.featured .package-icon {
+            background: rgba(0, 59, 149, 0.08);
+        }
+
+        .package-card.featured .package-icon i {
+            color: var(--primary-color);
+        }
+
+        .package-name {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .package-desc {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            margin-bottom: 30px;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .package-footer {
+            border-top: 1px solid var(--border-color);
+            padding-top: 24px;
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .btn-select-pkg {
+            display: inline-block;
+            width: 100%;
+            padding: 14px 28px;
+            background: var(--bg-light);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition-fast);
+            cursor: pointer;
+        }
+
+        .package-card.featured .btn-select-pkg {
+            background: var(--bg-light);
+            color: var(--primary-color);
+        }
+
+        .btn-select-pkg:hover {
+            background: var(--primary-color);
+            color: #fff;
+        }
+
+        .package-card.featured .btn-select-pkg:hover {
+            background: var(--primary-color);
+            color: #fff;
+            border-color: var(--primary-color);
+        }
+
+        @media (max-width: 992px) {
+            .packages-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .package-card.featured {
+                transform: none;
+            }
+
+            .package-card.featured:hover {
+                transform: translateY(-8px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header class="main-header">
+        <div class="header-container">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <span class="logo-text">KEMRA</span>
+                <span class="logo-dot">.</span>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="packages.html" class="nav-link active">Packages</a>
+                <a href="menu.html" class="nav-link">Menu</a>
+                <a href="index.html#destinations" class="nav-link">Destinations</a>
+                <a href="index.html#offers" class="nav-link">Special Offers</a>
+            </nav>
+
+            <!-- Social Media Icons -->
+            <div class="social-links">
+                <a href="https://facebook.com/share/1CPKncccrh/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"
+                    class="social-icon facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/kemra.1?igsh=aHpubXd0a25neXd5&utm_source=qr" target="_blank"
+                    aria-label="Instagram" class="social-icon instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn" class="social-icon linkedin">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://wa.me/" target="_blank" aria-label="WhatsApp" class="social-icon whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Packages Hero Section -->
+    <section class="packages-hero">
+        <h1>Our Stay Packages</h1>
+    </section>
+
+    <!-- Packages Grid Section -->
+    <section class="packages-section">
+        <div class="packages-grid">
+
+            <!-- Package 1: All-Inclusive -->
+            <div class="package-card featured">
+                <div class="badge-featured">Popular</div>
+                <div class="package-icon">
+                    <i class="fa-solid fa-crown"></i>
+                </div>
+                <h3 class="package-name">All-Inclusive</h3>
+                <p class="package-desc" style="margin-bottom: 15px;">Experience complete luxury. This package allows you
+                    to choose up to 4 items from each category (such as 4 Pizzas, 4 Desserts, 4 Sandwiches, etc.) from
+                    our onboard dining menu during your stay.</p>
+                <div style="font-size: 1.8rem; font-weight: 800; color: var(--primary-color); margin-bottom: 25px;">
+                    35,000 EGP</div>
+                <div class="package-footer">
+                    <a href="menu.html?package=all-inclusive" class="btn-select-pkg" style="text-align: center;">Select
+                        Package</a>
+                </div>
+            </div>
+
+            <!-- Package 2: Bed & Breakfast -->
+            <div class="package-card">
+                <div class="package-icon">
+                    <i class="fa-solid fa-mug-hot"></i>
+                </div>
+                <h3 class="package-name">Bed & Breakfast</h3>
+                <p class="package-desc" style="margin-bottom: 15px;">Enjoy a wonderful morning start. This package
+                    includes 4 Drinks of your choice and 4 Desserts (specifically Fruit Tart or Chocolate Tart) during
+                    your stay.</p>
+                <div style="font-size: 1.8rem; font-weight: 800; color: var(--primary-color); margin-bottom: 25px;">
+                    30,000 EGP</div>
+                <div class="package-footer">
+                    <a href="menu.html?package=bed-breakfast" class="btn-select-pkg" style="text-align: center;">Select
+                        Package</a>
+                </div>
+            </div>
+
+            <!-- Package 3: Bed Only -->
+            <div class="package-card">
+                <div class="package-icon">
+                    <i class="fa-solid fa-bed"></i>
+                </div>
+                <h3 class="package-name">Bed Only</h3>
+                <p class="package-desc" style="margin-bottom: 15px;">Ideal for independent travelers. This package
+                    includes luxury accommodation only, with all dining options available separately.</p>
+                <div style="font-size: 1.8rem; font-weight: 800; color: var(--primary-color); margin-bottom: 25px;">
+                    25,000 EGP</div>
+                <div class="package-footer">
+                    <a href="menu.html?package=bed-only" class="btn-select-pkg" style="text-align: center;">Select
+                        Package</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo footer-logo">
+                        <span class="logo-text">KEMRA</span><span class="logo-dot">.</span>
+                    </a>
+                    <p>Your gateway to extraordinary Egyptian travel experiences. We craft unforgettable journeys across
+                        the Nile and beyond.</p>
+                    <div class="footer-social">
+                        <a href="https://facebook.com/share/1CPKncccrh/?mibextid=wwXIfr" target="_blank"
+                            class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/kemra.1?igsh=aHpubXd0a25neXd5&utm_source=qr" target="_blank"
+                            class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://linkedin.com" target="_blank" class="social-icon linkedin"><i
+                                class="fab fa-linkedin-in"></i></a>
+                        <a href="https://wa.me/" target="_blank" class="social-icon whatsapp"><i
+                                class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="packages.html">Packages</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="index.html#destinations">Destinations</a></li>
+                        <li><a href="index.html#offers">Special Offers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Destinations</h4>
+                    <ul>
+                        <li><a href="index.html#destinations">Aswan</a></li>
+                        <li><a href="index.html#destinations">Abu Simbel Temple</a></li>
+                        <li><a href="index.html#destinations">Philae Temple</a></li>
+                        <li><a href="index.html#destinations">Kom Ombo Temple</a></li>
+                        <li><a href="index.html#destinations">Edfu Temple</a></li>
+                        <li><a href="index.html#destinations">Valley of the Kings</a></li>
+                        <li><a href="index.html#destinations">Karnak Temple</a></li>
+                        <li><a href="index.html#destinations">Luxor Temple</a></li>
+                        <li><a href="index.html#destinations">Luxor</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fa-solid fa-location-dot"></i> 12 Nile Corniche, Cairo, Egypt</li>
+                        <li><i class="fa-solid fa-phone"></i> +20 100 000 0000</li>
+                        <li><i class="fa-solid fa-envelope"></i> info@kemra.com</li>
+                        <li><i class="fa-solid fa-clock"></i> Mon – Sat: 9:00 AM – 9:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 KEMRA. All rights reserved</p>
+                <p>Made By <a href="https://ammar-immad.vercel.app/">Ammar Immad</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

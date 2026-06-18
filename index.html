@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KEMRA - Luxury Booking & Stay</title>
+    <!-- Google Fonts: Outfit for English/Numbers -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome for Social Icons & Booking Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header class="main-header">
+        <div class="header-container">
+            <!-- Logo -->
+            <a href="#" class="logo">
+                <span class="logo-text">KEMRA</span>
+                <span class="logo-dot">.</span>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="packages.html" class="nav-link">Packages</a>
+                <a href="menu.html" class="nav-link">Menu</a>
+                <a href="index.html#destinations" class="nav-link">Destinations</a>
+                <a href="index.html#offers" class="nav-link">Special Offers</a>
+            </nav>
+
+            <!-- Social Media Icons -->
+            <div class="social-links">
+                <a href="https://facebook.com/share/1CPKncccrh/?mibextid=wwXIfr" target="_blank" aria-label="Facebook" class="social-icon facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/kemra.1?igsh=aHpubXd0a25neXd5&utm_source=qr" target="_blank" aria-label="Instagram" class="social-icon instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn" class="social-icon linkedin">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://wa.me/" target="_blank" aria-label="WhatsApp" class="social-icon whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero / Booking Section -->
+    <section class="hero-section">
+        <!-- Background Overlay -->
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <h1 class="hero-title">KEMRA</h1>
+            <p class="hero-subtitle">Travel While You Stay</p>
+
+            <!-- Booking Search Bar Container -->
+            <div class="booking-search-bar">
+
+                <!-- Field 1: Guests (Pax & Children) -->
+                <div class="booking-field dropdown-trigger" id="guestsTrigger">
+                    <div class="field-icon">
+                        <i class="fa-regular fa-user"></i>
+                    </div>
+                    <div class="field-info">
+                        <label>Guests</label>
+                        <span id="guestsDisplay">2 Adults · 0 Children</span>
+                    </div>
+
+                    <!-- Dropdown Content (Booking.com style) -->
+                    <div class="dropdown-popup" id="guestsDropdown">
+                        <div class="guest-selector-row">
+                            <div class="selector-label">
+                                <span class="label-title">Adults (Pax)</span>
+                                <span class="label-desc">Age 13 or above</span>
+                            </div>
+                            <div class="selector-controls">
+                                <button type="button" class="btn-control minus" id="adultsMinus" disabled>-</button>
+                                <span class="control-value" id="adultsValue">2</span>
+                                <button type="button" class="btn-control plus" id="adultsPlus">+</button>
+                            </div>
+                        </div>
+
+                        <div class="guest-selector-row">
+                            <div class="selector-label">
+                                <span class="label-title">Children (Children)</span>
+                                <span class="label-desc">Age 0 - 12</span>
+                            </div>
+                            <div class="selector-controls">
+                                <button type="button" class="btn-control minus" id="childrenMinus" disabled>-</button>
+                                <span class="control-value" id="childrenValue">0</span>
+                                <button type="button" class="btn-control plus" id="childrenPlus">+</button>
+                            </div>
+                        </div>
+
+                        <div class="dropdown-actions">
+                            <button type="button" class="btn-apply" id="applyGuests">Apply</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Field 2: Check-in / Check-out Dates -->
+                <div class="booking-field date-field" id="dateTrigger">
+                    <div class="field-icon">
+                        <i class="fa-regular fa-calendar-days"></i>
+                    </div>
+                    <div class="date-inputs-wrapper">
+                        <div class="date-input-box">
+                            <label for="checkinInput">Check-in</label>
+                            <input type="date" id="checkinInput" required>
+                        </div>
+                        <span class="date-separator"></span>
+                        <div class="date-input-box">
+                            <label for="checkoutInput">Check-out</label>
+                            <input type="date" id="checkoutInput" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Field 3: Tour Route -->
+                <div class="booking-field dropdown-trigger" id="routeTrigger">
+                    <div class="field-icon">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                    </div>
+                    <div class="field-info">
+                        <label>Tour Route</label>
+                        <span id="routeDisplay">Select destinations</span>
+                    </div>
+
+                    <!-- Dropdown Content (Checkboxes) -->
+                    <div class="dropdown-popup route-popup" id="routeDropdown">
+                        <div class="route-options-list">
+                            <label class="checkbox-container">
+                                <input type="checkbox" value="Aswan" class="route-checkbox">
+                                <span class="checkmark"></span>
+                                <span class="option-label">Aswan</span>
+                            </label>
+                            <label class="checkbox-container">
+                                <input type="checkbox" value="Abu Simbel Temple" class="route-checkbox">
+                                <span class="checkmark"></span>
+                                <span class="option-label">Abu Simbel Temple</span>
+                            </label>
+                            <label class="checkbox-container">
+                                <input type="checkbox" value="Philae Temple" class="route-checkbox">
+                                <span class="checkmark"></span>
+                                <span class="option-label">Philae Temple</span>
+                            </label>
+                            <label class="checkbox-container">
+                                <input type="checkbox" value="Kom Ombo Temple" class="route-checkbox">
+                                <span class="checkmark"></span>
+                                <span class="option-label">Kom Ombo Temple</span>
+                            </label>
+                            <label class="checkbox-container">
+                                <input type="checkbox" value="Edfu Temple" class="route-checkbox">
+                                <span class="checkmark"></span>
+                                <span class="option-label">Edfu Temple</span>
+                            </label>
+                            <label class="checkbox-container">
+                                <input type="checkbox" value="Mortuary Temple of Hatshepsut" class="route-checkbox">
+                                <span class="checkmark"></span>
+                                <span class="option-label">Mortuary Temple of Hatshepsut</span>
+                            </label>
+                            <label class="checkbox-container">
+                                <input type="checkbox" value="Valley of the Kings" class="route-checkbox">
+                                <span class="checkmark"></span>
+                                <span class="option-label">Valley of the Kings</span>
+                            </label>
+                            <label class="checkbox-container">
+                                <input type="checkbox" value="Karnak Temple" class="route-checkbox">
+                                <span class="checkmark"></span>
+                                <span class="option-label">Karnak Temple</span>
+                            </label>
+                            <label class="checkbox-container">
+                                <input type="checkbox" value="Luxor Temple" class="route-checkbox">
+                                <span class="checkmark"></span>
+                                <span class="option-label">Luxor Temple</span>
+                            </label>
+                            <label class="checkbox-container">
+                                <input type="checkbox" value="Luxor" class="route-checkbox">
+                                <span class="checkmark"></span>
+                                <span class="option-label">Luxor</span>
+                            </label>
+                        </div>
+                        <div class="dropdown-actions">
+                            <button type="button" class="btn-apply" id="applyRoute">Apply</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Book Button -->
+                <button type="button" class="search-btn" id="searchBtn">
+                    <span>Book Now</span>
+                    <i class="fa-solid fa-calendar-check"></i>
+                </button>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Tour Route Section -->
+    <section class="tour-route-section">
+        <div class="section-container">
+            <h2 class="section-title text-light-title">Our Tour Route</h2>
+
+            <div class="route-map-container">
+                <!-- SVG Canvas for Connecting Arrows -->
+                <svg class="route-svg-canvas" viewBox="0 0 1000 650" preserveAspectRatio="xMidYMid meet">
+                    <!-- Definitions for Arrow markers -->
+                    <defs>
+                        <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6"
+                            orient="auto-start-reverse">
+                            <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--accent-color)" />
+                        </marker>
+                    </defs>
+
+                    <!-- 1. Aswan -> Abu Simbel -->
+                    <path class="route-path" d="M 240 97.5 L 390 97.5" marker-end="url(#arrow)" />
+
+                    <!-- 2. Abu Simbel -> Aswan (Return) -->
+                    <path class="route-path return-path" d="M 430 135 C 370 200, 270 200, 210 135"
+                        marker-end="url(#arrow)" />
+
+                    <!-- 3. Aswan -> Philae Temple (Long Curve) -->
+                    <path class="route-path long-path" d="M 210 60 C 350 -10, 650 -10, 790 60"
+                        marker-end="url(#arrow)" />
+
+                    <!-- 4. Philae Temple -> Kom Ombo -->
+                    <path class="route-path" d="M 850 135 L 850 255" marker-end="url(#arrow)" />
+
+                    <!-- 5. Kom Ombo -> Edfu -->
+                    <path class="route-path" d="M 850 330 L 850 535" marker-end="url(#arrow)" />
+
+                    <!-- 6. Edfu -> Hatshepsut -->
+                    <path class="route-path" d="M 750 572 L 610 572" marker-end="url(#arrow)" />
+
+                    <!-- 7. Hatshepsut -> Valley of Kings -->
+                    <path class="route-path" d="M 390 572 L 260 572" marker-end="url(#arrow)" />
+
+                    <!-- 8. Valley of Kings -> Karnak -->
+                    <path class="route-path" d="M 150 535 L 150 330" marker-end="url(#arrow)" />
+
+                    <!-- 9. Karnak -> Luxor Temple -->
+                    <path class="route-path" d="M 240 292.5 L 390 292.5" marker-end="url(#arrow)" />
+
+                    <!-- 10. Luxor Temple -> Luxor (End Point) -->
+                    <path class="route-path" d="M 500 332.5 L 500 402" marker-end="url(#arrow)" />
+                </svg>
+
+                <!-- Map Locations (HTML Cards placed over coordinates) -->
+
+                <!-- Row 1: Aswan, Abu Simbel, Philae -->
+                <div class="route-node node-aswan" style="left: 15%; top: 15%;">
+                    <div class="node-badge start">Start Point</div>
+                    <div class="node-card">
+                        <div class="node-icon"><i class="fa-solid fa-location-dot"></i></div>
+                        <h3>Aswan</h3>
+                    </div>
+                </div>
+
+                <div class="route-node node-abusimbel" style="left: 50%; top: 15%;">
+                    <div class="node-card">
+                        <div class="node-icon"><i class="fa-solid fa-place-of-worship"></i></div>
+                        <h3>Abu Simbel Temple</h3>
+                    </div>
+                    <div class="return-label">Return</div>
+                </div>
+
+                <div class="route-node node-philae" style="left: 85%; top: 15%;">
+                    <div class="node-card">
+                        <div class="node-icon"><i class="fa-solid fa-landmark"></i></div>
+                        <h3>Philae Temple</h3>
+                    </div>
+                </div>
+
+                <!-- Row 2: Karnak, Luxor Temple, Kom Ombo -->
+                <div class="route-node node-karnak" style="left: 15%; top: 45%;">
+                    <div class="node-card">
+                        <div class="node-icon"><i class="fa-solid fa-columns"></i></div>
+                        <h3>Karnak Temple</h3>
+                    </div>
+                </div>
+
+                <div class="route-node node-luxortemple" style="left: 50%; top: 45%;">
+                    <div class="node-card">
+                        <div class="node-icon"><i class="fa-solid fa-monument"></i></div>
+                        <h3>Luxor Temple</h3>
+                    </div>
+                </div>
+
+                <div class="route-node node-komombo" style="left: 85%; top: 45%;">
+                    <div class="node-card">
+                        <div class="node-icon"><i class="fa-solid fa-archway"></i></div>
+                        <h3>Kom Ombo Temple</h3>
+                    </div>
+                </div>
+
+                <!-- Row 3: Luxor (End) -->
+                <div class="route-node node-luxor" style="left: 50%; top: 68%;">
+                    <div class="node-badge end">End Point</div>
+                    <div class="node-card highlighted">
+                        <div class="node-icon"><i class="fa-solid fa-hotel"></i></div>
+                        <h3>Luxor</h3>
+                    </div>
+                </div>
+
+                <!-- Row 4: Valley of Kings, Hatshepsut, Edfu -->
+                <div class="route-node node-valley" style="left: 15%; top: 88%;">
+                    <div class="node-card">
+                        <div class="node-icon"><i class="fa-solid fa-mountain"></i></div>
+                        <h3>Valley of the Kings</h3>
+                    </div>
+                </div>
+
+                <div class="route-node node-hatshepsut" style="left: 50%; top: 88%;">
+                    <div class="node-card">
+                        <div class="node-icon"><i class="fa-solid fa-monument"></i></div>
+                        <h3>Mortuary Temple of Hatshepsut</h3>
+                    </div>
+                </div>
+
+                <div class="route-node node-edfu" style="left: 85%; top: 88%;">
+                    <div class="node-card">
+                        <div class="node-icon"><i class="fa-solid fa-place-of-worship"></i></div>
+                        <h3>Edfu Temple</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Timeline (hidden on desktop) -->
+            <div class="route-timeline-mobile">
+                <div class="timeline-item start-item">
+                    <div class="timeline-dot"><i class="fa-solid fa-play"></i></div>
+                    <div class="timeline-content">
+                        <span class="timeline-badge start">Start Point</span>
+                        <h3>Aswan</h3>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"><i class="fa-solid fa-rotate-left"></i></div>
+                    <div class="timeline-content">
+                        <h3>Abu Simbel Temple</h3>
+                        <span class="timeline-note"><i class="fa-solid fa-arrow-rotate-left"></i> Return to Aswan</span>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"><i class="fa-solid fa-location-pin"></i></div>
+                    <div class="timeline-content">
+                        <h3>Philae Temple</h3>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"><i class="fa-solid fa-location-pin"></i></div>
+                    <div class="timeline-content">
+                        <h3>Kom Ombo Temple</h3>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"><i class="fa-solid fa-location-pin"></i></div>
+                    <div class="timeline-content">
+                        <h3>Edfu Temple</h3>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"><i class="fa-solid fa-location-pin"></i></div>
+                    <div class="timeline-content">
+                        <h3>Mortuary Temple of Hatshepsut</h3>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"><i class="fa-solid fa-location-pin"></i></div>
+                    <div class="timeline-content">
+                        <h3>Valley of the Kings</h3>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"><i class="fa-solid fa-location-pin"></i></div>
+                    <div class="timeline-content">
+                        <h3>Karnak Temple</h3>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"><i class="fa-solid fa-location-pin"></i></div>
+                    <div class="timeline-content">
+                        <h3>Luxor Temple</h3>
+                    </div>
+                </div>
+                <div class="timeline-item end-item">
+                    <div class="timeline-dot"><i class="fa-solid fa-flag-checkered"></i></div>
+                    <div class="timeline-content">
+                        <span class="timeline-badge end">End Point</span>
+                        <h3>Luxor</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advantages Section -->
+    <section class="advantages-section">
+        <div class="section-container">
+            <h2 class="section-title">Advantages your traveling with kemra</h2>
+            <div class="advantages-grid">
+                <!-- Card 1 -->
+                <div class="advantage-card">
+                    <div class="card-image-wrapper">
+                        <img src="image.png" alt="Travel While You Stay">
+                    </div>
+                    <div class="card-content">
+                        <h3>Travel While You Stay</h3>
+                        <p>Move between Egypt’s top destinations without packing, unpacking, or changing hotels. Your
+                            private cabin stays with you throughout the journey.</p>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="advantage-card">
+                    <div class="card-image-wrapper">
+                        <img src="https://i.pinimg.com/736x/d7/e4/13/d7e413aaa0f7fd657f58e6cc3d9a10b1.jpg"
+                            alt="Luxury Accommodation on the Move">
+                    </div>
+                    <div class="card-content">
+                        <h3>Luxury Accommodation on the Move</h3>
+                        <p>Enjoy comfortable sleeping cabins, onboard dining, panoramic views, and hotel-level service
+                            while traveling across Egypt.</p>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="advantage-card">
+                    <div class="card-image-wrapper">
+                        <img src="https://i.pinimg.com/736x/fb/1e/84/fb1e84e205778f2afd4766e6adbcc2be.jpg"
+                            alt="More Destinations in Less Time">
+                    </div>
+                    <div class="card-content">
+                        <h3>More Destinations in Less Time</h3>
+                        <p>Visit multiple cities and attractions in one trip while saving the time normally spent on
+                            transfers, check-ins, and hotel changes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offers Section -->
+    <section class="offers-section" id="offers">
+        <div class="section-container">
+            <h2 class="section-title">Special Offers</h2>
+            <div class="offers-grid-container">
+                <!-- Card 1 -->
+                <div class="offer-card">
+                    <div class="offer-icon-wrapper">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+                    <div class="offer-card-content">
+                        <h3>Early Booking Offer</h3>
+                        <p>Customers who book their journey 2–4 weeks in advance receive a special discount. This offer
+                            encourages early planning and guarantees availability for preferred routes.</p>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="offer-card">
+                    <div class="offer-icon-wrapper">
+                        <i class="fa-solid fa-people-group"></i>
+                    </div>
+                    <div class="offer-card-content">
+                        <h3>Group & Family Package</h3>
+                        <p>A special package designed for families and groups where customers can book together and
+                            benefit from a free or discounted seat (e.g., book 4 and get 1 free). This creates a more
+                            social and affordable travel experience.</p>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="offer-card">
+                    <div class="offer-icon-wrapper">
+                        <i class="fa-solid fa-umbrella-beach"></i>
+                    </div>
+                    <div class="offer-card-content">
+                        <h3>Seasonal & Holiday Offer</h3>
+                        <p>Special offers during peak seasons such as winter, Eid, and New Year. Customers receive added
+                            value such as free meals or discounted prices, enhancing their overall experience during
+                            holidays.</p>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="offer-card">
+                    <div class="offer-icon-wrapper">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <div class="offer-card-content">
+                        <h3>Loyalty Program (Kemra Rewards)</h3>
+                        <p>Customers earn reward points with every booking that can later be redeemed for discounts,
+                            free trips, or service upgrades. This encourages repeat usage and builds long-term customer
+                            relationships.</p>
+                    </div>
+                </div>
+                <!-- Card 5 -->
+                <div class="offer-card">
+                    <div class="offer-icon-wrapper">
+                        <i class="fa-solid fa-handshake"></i>
+                    </div>
+                    <div class="offer-card-content">
+                        <h3>First-Time Customer Offer</h3>
+                        <p>A special discount for new customers using Kemra Mobile Hotel for the first time, helping
+                            attract new users and reduce hesitation in trying the service.</p>
+                    </div>
+                </div>
+                <!-- Card 6 -->
+                <div class="offer-card">
+                    <div class="offer-icon-wrapper">
+                        <i class="fa-solid fa-user-plus"></i>
+                    </div>
+                    <div class="offer-card-content">
+                        <h3>Referral Offer</h3>
+                        <p>Customers who refer friends or family receive discounts or benefits once the referred person
+                            completes a booking. This increases customer acquisition through word-of-mouth marketing.
+                        </p>
+                    </div>
+                </div>
+                <!-- Card 7 -->
+                <div class="offer-card">
+                    <div class="offer-icon-wrapper">
+                        <i class="fa-solid fa-calendar-days"></i>
+                    </div>
+                    <div class="offer-card-content">
+                        <h3>Weekday / Weekend Offer</h3>
+                        <p>Discounts are provided on low-demand days (weekdays) or special packages for weekends to
+                            balance demand and increase occupancy rates.</p>
+                    </div>
+                </div>
+                <!-- Card 8 -->
+                <div class="offer-card">
+                    <div class="offer-icon-wrapper">
+                        <i class="fa-solid fa-gem"></i>
+                    </div>
+                    <div class="offer-card-content">
+                        <h3>Luxury Upgrade Offer</h3>
+                        <p>Customers are offered the opportunity to upgrade to premium services (VIP seating, enhanced
+                            rooms, exclusive dining) at a reduced price, increasing perceived value.</p>
+                    </div>
+                </div>
+                <!-- Card 9 -->
+                <div class="offer-card">
+                    <div class="offer-icon-wrapper">
+                        <i class="fa-solid fa-cake-candles"></i>
+                    </div>
+                    <div class="offer-card-content">
+                        <h3>Birthday & Special Occasion Offer</h3>
+                        <p>Customers celebrating birthdays or special occasions receive complimentary items such as
+                            cake, decorations, or personalized services, creating a memorable emotional experience.</p>
+                    </div>
+                </div>
+                <!-- Card 10 -->
+                <div class="offer-card">
+                    <div class="offer-icon-wrapper">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div class="offer-card-content">
+                        <h3>Limited-Time Flash Offer</h3>
+                        <p>Short-term promotional discounts announced on social media for a limited time (e.g., 24
+                            hours), creating urgency and encouraging quick booking decisions.</p>
+                    </div>
+                </div>
+                <!-- Card 11 -->
+                <div class="offer-card">
+                    <div class="offer-icon-wrapper">
+                        <i class="fa-solid fa-tags"></i>
+                    </div>
+                    <div class="offer-card-content">
+                        <h3>Off-Peak Offer</h3>
+                        <p>Discounted prices during low-demand periods to ensure continuous bookings and maximize
+                            utilization of the mobile hotel.</p>
+                    </div>
+                </div>
+                <!-- Card 12 -->
+                <div class="offer-card">
+                    <div class="offer-icon-wrapper">
+                        <i class="fa-solid fa-box-open"></i>
+                    </div>
+                    <div class="offer-card-content">
+                        <h3>All-Inclusive Package</h3>
+                        <p>A bundled offer that includes accommodation, meals, entertainment, and services at a reduced
+                            combined price, providing convenience and higher perceived value.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="section-container">
+            <h2 class="section-title">What Our Travelers Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-quote"><i class="fa-solid fa-quote-left"></i></div>
+                    <p class="testimonial-text">Kemra made our Egypt trip absolutely unforgettable. From Cairo to Aswan,
+                        every detail was perfectly handled. Best travel service we've ever used!</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://i.pravatar.cc/80?img=12" alt="Sarah M.">
+                        </div>
+                        <div class="author-info">
+                            <h4>Sarah Mitchell</h4>
+                            <span>London, UK</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-quote"><i class="fa-solid fa-quote-left"></i></div>
+                    <p class="testimonial-text">The luxury accommodations in Sharm El Sheikh were breathtaking. Kemra's
+                        team was responsive, professional, and went above and beyond our expectations.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://i.pravatar.cc/80?img=33" alt="James R.">
+                        </div>
+                        <div class="author-info">
+                            <h4>James Reynolds</h4>
+                            <span>New York, USA</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-quote"><i class="fa-solid fa-quote-left"></i></div>
+                    <p class="testimonial-text">I never thought a Nile cruise to Luxor could be so seamless. Kemra's
+                        curated itinerary and expert guides made it a spiritual experience. Highly recommend!</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://i.pravatar.cc/80?img=47" alt="Aiko T.">
+                        </div>
+                        <div class="author-info">
+                            <h4>Aiko Tanaka</h4>
+                            <span>Tokyo, Japan</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Destinations Section -->
+    <section class="destinations-section" id="destinations">
+        <div class="section-container">
+            <h2 class="section-title">Locations Guests Loves</h2>
+            
+            <!-- First Grid (5 locations) -->
+            <div class="destinations-grid">
+                <div class="destination-card large">
+                    <img src="https://i.pinimg.com/736x/d7/61/04/d761049ad009381a0f9fa4de3321d978.jpg" alt="Abu Simbel">
+                    <div class="dest-overlay">
+                        <h3>Abu Simbel</h3>
+                        <span>The majestic colossal temples of King Ramesses II carved into ancient rock cliffs</span>
+                    </div>
+                </div>
+                <div class="destination-card">
+                    <img src="https://i.pinimg.com/736x/df/89/ce/df89ce8630c5ed4627d46a5b6b33f5da.jpg" alt="Aswan">
+                    <div class="dest-overlay">
+                        <h3>Aswan</h3>
+                        <span>A peaceful sanctuary where the Nile flows past golden desert dunes</span>
+                    </div>
+                </div>
+                <div class="destination-card">
+                    <img src="https://i.pinimg.com/736x/c3/45/58/c34558bdc071ea33803ca9308305d83b.jpg" alt="Kom Ombo Temple">
+                    <div class="dest-overlay">
+                        <h3>Kom Ombo Temple</h3>
+                        <span>The unique double temple dedicated to the Falcon and Crocodile gods</span>
+                    </div>
+                </div>
+                <div class="destination-card">
+                    <img src="https://i.pinimg.com/736x/6b/59/e1/6b59e1f9ad691f4ffea92241cb4baa8a.jpg" alt="Philae Temple">
+                    <div class="dest-overlay">
+                        <h3>Philae Temple</h3>
+                        <span>The sacred island sanctuary celebrating the love of Isis and Osiris</span>
+                    </div>
+                </div>
+                <div class="destination-card">
+                    <img src="https://i.pinimg.com/736x/4b/7a/a6/4b7aa63e18edb93d4cd1a66f6c82be45.jpg" alt="Edfu Temple">
+                    <div class="dest-overlay">
+                        <h3>Edfu Temple</h3>
+                        <span>The exceptionally preserved sandstone monument dedicated to Horus</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second Grid (5 locations) -->
+            <div class="destinations-grid"style="margin-top: 13px;">
+                
+                <div class="destination-card large">
+                    <img src="https://i.pinimg.com/736x/7d/32/ce/7d32ce90dd9438177151afed7e39444f.jpg" alt="Mortuary Temple of Hatshepsut">
+                    <div class="dest-overlay">
+                        <h3>Luxor Temple</h3>
+                        <span>The elegant riverside temple celebrating the annual festival of Opet</span>
+                    </div>
+                </div>
+                <div class="destination-card">
+                    <img src="https://i.pinimg.com/736x/c0/bc/94/c0bc949842a1f0ffd86c18c7f9bca1b0.jpg" alt="Valley of the Kings">
+                    <div class="dest-overlay">
+                        <h3>Valley of the Kings</h3>
+                        <span>The mysterious valley housing the eternal tombs of Egypt’s legendary pharaohs</span>
+                    </div>
+                </div>
+                <div class="destination-card">
+                    <img src="https://i.pinimg.com/736x/d8/bd/e2/d8bde24fc88ce7974351229a6c109958.jpg" alt="Karnak Temple">
+                    <div class="dest-overlay">
+                        <h3>Karnak Temple</h3>
+                        <span>The colossal temple city featuring the breathtaking Great Hypostyle Hall</span>
+                    </div>
+                </div>
+                <div class="destination-card">
+                    <img src="https://i.pinimg.com/736x/b9/c8/ab/b9c8ab41e37fee889c5a8cbfe7f16032.jpg" alt="Luxor Temple">
+                    <div class="dest-overlay">
+                        <h3>Mortuary Temple of Hatshepsut</h3>
+                        <span>A spectacular colonnaded masterpiece matching the dramatic cliffs of Deir el-Bahari</span>
+                    </div>
+                </div>
+                <div class="destination-card">
+                    <img src="https://i.pinimg.com/736x/52/d2/88/52d28803de6fca0e80017f7bf1836ca0.jpg" alt="Luxor">
+                    <div class="dest-overlay">
+                        <h3>Luxor</h3>
+                        <span>The historic capital of Egypt's New Kingdom empire and open-air museum</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booked Destinations Section -->
+    <section class="booked-section" id="booked-section">
+        <div class="section-container">
+            <div class="booked-header">
+                <h2 class="section-title">Destinations that have been booked</h2>
+                <p class="booked-subtitle">Your selected destinations for this journey</p>
+            </div>
+
+            <!-- Empty State -->
+            <div class="booked-empty" id="booked-empty">
+                <div class="booked-empty-icon">
+                    <i class="fa-regular fa-map"></i>
+                </div>
+                <h3>No Destinations Booked Yet</h3>
+                <p>Use the booking form at the top of the page to select your destinations and click <strong>Book Now</strong> to see your itinerary here.</p>
+                <a href="#" class="btn-scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
+                    <i class="fa-solid fa-arrow-up"></i> Go to Booking Form
+                </a>
+            </div>
+
+            <!-- Booked Content (shown after booking) -->
+            <div class="booked-content" id="booked-content">
+
+                <!-- Trip Info Bar -->
+                <div class="booked-trip-info" id="booked-trip-info">
+                    <div class="trip-info-item">
+                        <i class="fa-regular fa-calendar-check"></i>
+                        <div>
+                            <span class="trip-info-label">Check-in</span>
+                            <span class="trip-info-value" id="trip-checkin">—</span>
+                        </div>
+                    </div>
+                    <div class="trip-info-divider"></div>
+                    <div class="trip-info-item">
+                        <i class="fa-regular fa-calendar-xmark"></i>
+                        <div>
+                            <span class="trip-info-label">Check-out</span>
+                            <span class="trip-info-value" id="trip-checkout">—</span>
+                        </div>
+                    </div>
+                    <div class="trip-info-divider"></div>
+                    <div class="trip-info-item">
+                        <i class="fa-regular fa-user"></i>
+                        <div>
+                            <span class="trip-info-label">Guests</span>
+                            <span class="trip-info-value" id="trip-guests">—</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Destinations Table -->
+                <div class="booked-table-wrapper">
+                    <table class="booked-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Destination</th>
+                            </tr>
+                        </thead>
+                        <tbody id="booked-tbody">
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Totals Summary Cards -->
+                <div class="booked-summary-row">
+                    <div class="booked-summary-card destinations-card">
+                        <div class="summary-card-icon">
+                            <i class="fa-solid fa-map-pin"></i>
+                        </div>
+                        <div class="summary-card-info">
+                            <span class="summary-card-label">Destinations Booked</span>
+                            <span class="summary-card-value" id="stat-destinations">0</span>
+                        </div>
+                    </div>
+                    <div class="booked-summary-card total-card">
+                        <div class="summary-card-icon">
+                            <i class="fa-solid fa-receipt"></i>
+                        </div>
+                        <div class="summary-card-info">
+                            <span class="summary-card-label">Grand Total</span>
+                            <span class="summary-card-value" id="stat-total">35,000 EGP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="booked-actions">
+                    <button class="btn-clear-booking" id="clear-booking-btn">
+                        <i class="fa-solid fa-trash-can"></i> Clear Booking
+                    </button>
+                    <button class="btn-confirm-booking" id="confirm-booking-btn">
+                        <i class="fa-solid fa-circle-check"></i> Confirm Booking
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo footer-logo">
+                        <span class="logo-text">KEMRA</span><span class="logo-dot">.</span>
+                    </a>
+                    <p>Your gateway to extraordinary Egyptian travel experiences. We craft unforgettable journeys across
+                        the Nile and beyond.</p>
+                    <div class="footer-social">
+                        <a href="https://facebook.com/share/1CPKncccrh/?mibextid=wwXIfr" target="_blank" class="social-icon facebook"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/kemra.1?igsh=aHpubXd0a25neXd5&utm_source=qr" target="_blank" class="social-icon instagram"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://linkedin.com" target="_blank" class="social-icon linkedin"><i
+                                class="fab fa-linkedin-in"></i></a>
+                        <a href="https://wa.me/" target="_blank" class="social-icon whatsapp"><i
+                                class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="index.html#destinations">Destinations</a></li>
+                        <li><a href="index.html#offers">Special Offers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Destinations</h4>
+                    <ul>
+                        <li><a href="index.html#destinations">Aswan</a></li>
+                        <li><a href="index.html#destinations">Abu Simbel Temple</a></li>
+                        <li><a href="index.html#destinations">Philae Temple</a></li>
+                        <li><a href="index.html#destinations">Kom Ombo Temple</a></li>
+                        <li><a href="index.html#destinations">Edfu Temple</a></li>
+                        <li><a href="index.html#destinations">Valley of the Kings</a></li>
+                        <li><a href="index.html#destinations">Karnak Temple</a></li>
+                        <li><a href="index.html#destinations">Luxor Temple</a></li>
+                        <li><a href="index.html#destinations">Luxor</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fa-solid fa-location-dot"></i> 12 Nile Corniche, Cairo, Egypt</li>
+                        <li><i class="fa-solid fa-phone"></i> +20 100 000 0000</li>
+                        <li><i class="fa-solid fa-envelope"></i> info@kemra.com</li>
+                        <li><i class="fa-solid fa-clock"></i> Mon – Sat: 9:00 AM – 9:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 KEMRA. All rights reserved</p>
+                <p>Made By <a href="https://ammar-immad.vercel.app/">Ammar Immad</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KEMRA - Onboard Dining Menu</title>
+    <!-- Google Fonts: Outfit for English/Numbers -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome for Social Icons & Booking Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header class="main-header">
+        <div class="header-container">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <span class="logo-text">KEMRA</span>
+                <span class="logo-dot">.</span>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="packages.html" class="nav-link">Packages</a>
+                <a href="menu.html" class="nav-link active">Menu</a>
+                <a href="index.html#destinations" class="nav-link">Destinations</a>
+                <a href="index.html#offers" class="nav-link">Special Offers</a>
+            </nav>
+
+            <!-- Social Media Icons -->
+            <div class="social-links">
+                <a href="https://facebook.com/share/1CPKncccrh/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"
+                    class="social-icon facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/kemra.1?igsh=aHpubXd0a25neXd5&utm_source=qr" target="_blank"
+                    aria-label="Instagram" class="social-icon instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn" class="social-icon linkedin">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://wa.me/" target="_blank" aria-label="WhatsApp" class="social-icon whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Menu Hero Section -->
+    <section class="menu-hero">
+        <h1>Menu</h1>
+        <!-- Package Type Dropdown Field -->
+        <div
+            style="margin-top: 20px; display: inline-flex; flex-direction: column; align-items: flex-start; text-align: left; background: rgba(255,255,255,0.06); padding: 12px 20px; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
+            <label for="packageSelect"
+                style="font-size: 0.75rem; font-weight: 700; color: var(--accent-color); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; display: flex; align-items: center; gap: 6px;">
+                <i class="fa-solid fa-gift"></i> Package Type
+            </label>
+            <select id="packageSelect"
+                style="background: transparent; border: none; color: #fff; font-family: var(--font-en); font-size: 1rem; font-weight: 700; outline: none; cursor: pointer; padding-right: 20px; -webkit-appearance: none; -moz-appearance: none; appearance: none; background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22white%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><polyline points=%226 9 12 15 18 9%22/></svg>'); background-repeat: no-repeat; background-position: calc(100% - 2px) center; background-size: 12px;">
+                <option value="all-inclusive" style="background: #0a1628; color: #fff; font-weight: 600;">All-Inclusive
+                    (35,000 EGP)</option>
+                <option value="bed-breakfast" style="background: #0a1628; color: #fff; font-weight: 600;">Bed &
+                    Breakfast (30,000 EGP)</option>
+                <option value="bed-only" style="background: #0a1628; color: #fff; font-weight: 600;">Bed Only (25,000
+                    EGP)</option>
+            </select>
+        </div>
+    </section>
+
+    <!-- Menu Layout Section -->
+    <section class="menu-layout">
+        <!-- Main Menu Content -->
+        <div class="menu-main-content">
+            <!-- Category Tabs -->
+            <div class="menu-tabs">
+                <button class="tab-btn active" data-category="all">All Items</button>
+                <button class="tab-btn" data-category="soups">Soups</button>
+                <button class="tab-btn" data-category="appetizers">Appetizers</button>
+                <button class="tab-btn" data-category="salads">Salads</button>
+                <button class="tab-btn" data-category="mains">Main Courses</button>
+                <button class="tab-btn" data-category="pizza">Pizza</button>
+                <button class="tab-btn" data-category="pasta">Pasta</button>
+                <button class="tab-btn" data-category="sandwiches">Sandwiches</button>
+                <button class="tab-btn" data-category="desserts">Desserts</button>
+                <button class="tab-btn" data-category="drinks">Drinks</button>
+            </div>
+
+            <!-- Table of Items -->
+            <div class="menu-table-container">
+                <table class="menu-table">
+                    <thead>
+                        <tr>
+                            <th>Item Details</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="menu-items-body">
+                        <!-- Dynamic items rendered by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Sidebar Summary (Sticky Cart) -->
+        <div class="menu-sidebar">
+            <h3 class="sidebar-title">
+                <i class="fa-solid fa-receipt"></i>
+                Order Summary
+            </h3>
+
+            <!-- Items Selected List -->
+            <div id="cart-items" class="cart-items-list">
+                <div class="cart-empty-state">
+                    <i class="fa-solid fa-bowl-food"></i>
+                    <p>No items selected. Add some delicious dishes to your order!</p>
+                </div>
+            </div>
+
+            <!-- Invoice Total -->
+            <div class="invoice-pricing">
+                <div class="invoice-row">
+                    <span>Subtotal</span>
+                    <span id="subtotal-val">0.00 EGP</span>
+                </div>
+                <div class="invoice-row">
+                    <span>Service Charge (10%)</span>
+                    <span id="service-val">0.00 EGP</span>
+                </div>
+                <div class="invoice-row">
+                    <span>VAT (5%)</span>
+                    <span id="vat-val">0.00 EGP</span>
+                </div>
+                <div class="invoice-row total-row">
+                    <span>Grand Total</span>
+                    <span class="val" id="total-val">0.00 EGP</span>
+                </div>
+            </div>
+
+            <!-- Place Order Button -->
+            <button class="btn-checkout" id="checkout-btn" disabled>
+                <i class="fa-solid fa-bell"></i>
+                Send to My Room
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo footer-logo">
+                        <span class="logo-text">KEMRA</span><span class="logo-dot">.</span>
+                    </a>
+                    <p>Your gateway to extraordinary Egyptian travel experiences. We craft unforgettable journeys across
+                        the Nile and beyond.</p>
+                    <div class="footer-social">
+                        <a href="https://facebook.com/share/1CPKncccrh/?mibextid=wwXIfr" target="_blank"
+                            class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/kemra.1?igsh=aHpubXd0a25neXd5&utm_source=qr" target="_blank"
+                            class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://linkedin.com" target="_blank" class="social-icon linkedin"><i
+                                class="fab fa-linkedin-in"></i></a>
+                        <a href="https://wa.me/" target="_blank" class="social-icon whatsapp"><i
+                                class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="index.html#destinations">Destinations</a></li>
+                        <li><a href="index.html#offers">Special Offers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Destinations</h4>
+                    <ul>
+                        <li><a href="index.html#destinations">Aswan</a></li>
+                        <li><a href="index.html#destinations">Abu Simbel Temple</a></li>
+                        <li><a href="index.html#destinations">Philae Temple</a></li>
+                        <li><a href="index.html#destinations">Kom Ombo Temple</a></li>
+                        <li><a href="index.html#destinations">Edfu Temple</a></li>
+                        <li><a href="index.html#destinations">Valley of the Kings</a></li>
+                        <li><a href="index.html#destinations">Karnak Temple</a></li>
+                        <li><a href="index.html#destinations">Luxor Temple</a></li>
+                        <li><a href="index.html#destinations">Luxor</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fa-solid fa-location-dot"></i> 12 Nile Corniche, Cairo, Egypt</li>
+                        <li><i class="fa-solid fa-phone"></i> +20 100 000 0000</li>
+                        <li><i class="fa-solid fa-envelope"></i> info@kemra.com</li>
+                        <li><i class="fa-solid fa-clock"></i> Mon – Sat: 9:00 AM – 9:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 KEMRA. All rights reserved</p>
+                <p>Made By <a href="https://ammar-immad.vercel.app/">Ammar Immad</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification for Order Success -->
+    <div class="order-toast" id="order-toast">
+        <i class="fa-solid fa-circle-check"></i>
+        <span>Order placed successfully! Sending to your cabin shortly.</span>
+    </div>
+
+    <!-- Script holding Menu Data and Logic -->
+    <script>
+        const menuData = [
+            { id: 5, name: "Orzo Soup", category: "soups", price: 111.00, desc: "Orzo, Butter, Stock" },
+            { id: 6, name: "Chicken Freek Soup", category: "soups", price: 131.00, desc: "Freekeh, Chicken Cubes, Onion, Stock" },
+            { id: 7, name: "Onion Soup", category: "soups", price: 97.00, desc: "Onion, Butter, Flour, Cheese, Stock" },
+            { id: 8, name: "Vegetable Soup", category: "soups", price: 102.00, desc: "Carrot, Potato, Zucchini, Green Peas, Onion" },
+            { id: 9, name: "Chicken Mushroom Cream Soup", category: "soups", price: 154.00, desc: "Chicken, Mushroom, Garlic, Onion, Cream" },
+            { id: 10, name: "Seafood Soup", category: "soups", price: 209.00, desc: "Mixed Seafood, Carrot, Celery, Tomato, Garlic" },
+            { id: 11, name: "Lentil Soup", category: "soups", price: 103.00, desc: "Yellow Lentils, Carrot, Tomato, Garlic" },
+
+            { id: 12, name: "French Fries", category: "appetizers", price: 53.00, desc: "Potato, Oil, Salt" },
+            { id: 13, name: "Chicken Wings", category: "appetizers", price: 90.00, desc: "Chicken Wings, Olive Oil, Seasoning" },
+            { id: 14, name: "Grape Leaves", category: "appetizers", price: 118.00, desc: "Grape Leaves, Rice, Minced Meat, Onion, Olive Oil, Lemon Juice" },
+            { id: 15, name: "Tahini Dip", category: "appetizers", price: 66.00, desc: "Tahini, Garlic, Lemon Juice, Water" },
+            { id: 16, name: "Mozzarella Sticks", category: "appetizers", price: 109.00, desc: "Mozzarella, Egg, Breadcrumbs, Oil" },
+            { id: 17, name: "Sambousek Meat", category: "appetizers", price: 133.00, desc: "Dough, Minced Meat, Onion, Oil" },
+            { id: 18, name: "Sambousek Cheese", category: "appetizers", price: 119.00, desc: "Dough, Cheese, Oil" },
+
+            { id: 19, name: "Ringa Salad", category: "salads", price: 113.00, desc: "Smoked Herring, Olive Oil, Onion" },
+            { id: 20, name: "Cucumber Yogurt", category: "salads", price: 50.00, desc: "Cucumber, Yogurt, Garlic" },
+            { id: 21, name: "Hummus", category: "salads", price: 53.00, desc: "Chickpeas, Tahini, Garlic, Lemon Juice, Olive Oil" },
+            { id: 22, name: "Tuna Salad", category: "salads", price: 108.00, desc: "Tuna, Tomato, Lettuce, Cucumber, Olive Oil" },
+            { id: 23, name: "Chicken Caesar Salad", category: "salads", price: 167.00, desc: "Chicken Breast, Lettuce, Croutons, Parmesan, Ranch Dressing" },
+            { id: 24, name: "Green Salad", category: "salads", price: 64.00, desc: "Lettuce, Tomato, Cucumber, Carrot, Olive Oil, Lemon Juice" },
+
+            { id: 25, name: "Kamounia", category: "mains", price: 356.00, desc: "Minced Beef, Onion, Olive Oil, Cumin" },
+            { id: 26, name: "Lamb Okra Casserole", category: "mains", price: 434.00, desc: "Lamb Meat, Okra, Onion, Garlic, Tomato Paste" },
+            { id: 27, name: "Stuffed Pigeon", category: "mains", price: 354.00, desc: "Pigeon, Rice, Pine Nuts, Onion, Mixed Spices" },
+            { id: 28, name: "Freekeh Casserole", category: "mains", price: 415.00, desc: "Freekeh, Meat Cubes, Onion, Butter" },
+            { id: 29, name: "Moussaka", category: "mains", price: 417.00, desc: "Eggplant, Meat, Tomato, Onion, Garlic" },
+            { id: 30, name: "Osso Buco", category: "mains", price: 480.00, desc: "Veal Shank, Carrot, Celery, Onion, Tomato Paste" },
+            { id: 31, name: "Chicken Curry", category: "mains", price: 400.00, desc: "Chicken, Onion, Garlic, Curry Powder, Coconut Milk" },
+            { id: 32, name: "Black Pepper Fillet", category: "mains", price: 484.00, desc: "Beef Fillet, Black Pepper, Butter" },
+            { id: 33, name: "Cordon Bleu", category: "mains", price: 400.00, desc: "Chicken Breast, Ham, Cheese, Egg, Breadcrumbs" },
+            { id: 34, name: "Piccata Beef", category: "mains", price: 503.00, desc: "Beef, Mushroom, Cream, Butter, Beef Stock" },
+            { id: 35, name: "Grilled Shrimp", category: "mains", price: 520.00, desc: "Shrimp, Olive Oil, Lemon Juice, Garlic" },
+
+            { id: 39, name: "Chicken Crispy Ranch Pizza", category: "pizza", price: 289.00, desc: "Ranch Sauce, Mozzarella, Chicken, Onion, Bell Pepper" },
+            { id: 40, name: "Pastrami Pizza", category: "pizza", price: 313.00, desc: "Pastrami, Mozzarella, Tomato Sauce, Onion" },
+            { id: 41, name: "Tuna Pizza", category: "pizza", price: 314.00, desc: "Tuna, Mozzarella, Tomato Sauce, Black Olives" },
+            { id: 42, name: "Vegetarian Pizza", category: "pizza", price: 252.00, desc: "Mozzarella, Mushroom, Zucchini, Bell Pepper" },
+            { id: 43, name: "Margherita Pizza", category: "pizza", price: 261.00, desc: "Mozzarella, Tomato Sauce, Basil, Olive Oil" },
+            { id: 44, name: "Quattro Cheese Pizza", category: "pizza", price: 301.00, desc: "Mozzarella, Parmesan, Gorgonzola, Emmental" },
+            { id: 45, name: "Pescatori Pizza", category: "pizza", price: 353.00, desc: "Shrimp, Calamari, Mussels, Mozzarella" },
+
+            { id: 47, name: "Club Sandwich", category: "sandwiches", price: 197.00, desc: "Chicken, Bacon, Lettuce, Tomato, Mayonnaise" },
+            { id: 48, name: "Beef Burger", category: "sandwiches", price: 214.00, desc: "Beef Patty, Lettuce, Tomato, Onion, Mayo, Ketchup" },
+            { id: 49, name: "Tuna Sandwich", category: "sandwiches", price: 233.00, desc: "Tuna, Mayonnaise, Lettuce" },
+            { id: 50, name: "Chicken Grill Sandwich", category: "sandwiches", price: 184.00, desc: "Grilled Chicken, Lettuce, Tomato, BBQ Sauce" },
+            { id: 51, name: "Meat & Onion Sandwich", category: "sandwiches", price: 221.00, desc: "Minced Meat, Onion, Spices" },
+
+            { id: 52, name: "Meatball Pasta", category: "pasta", price: 262.00, desc: "Pasta, Meatballs, Tomato Sauce, Parmesan" },
+            { id: 53, name: "Macarona Bechamel", category: "pasta", price: 245.00, desc: "Penne Pasta, Minced Beef, Béchamel Sauce, Mozzarella" },
+            { id: 54, name: "Pesto Pasta", category: "pasta", price: 242.00, desc: "Pasta, Basil, Walnuts, Parmesan, Garlic" },
+            { id: 55, name: "Pasta Bolognese", category: "pasta", price: 234.00, desc: "Pasta, Minced Beef, Tomato Puree, Herbs" },
+            { id: 56, name: "Egyptian Koshari", category: "pasta", price: 108.00, desc: "Rice, Lentils, Pasta, Chickpeas, Tomato Sauce" },
+            { id: 57, name: "Risotto", category: "pasta", price: 188.00, desc: "Arborio Rice, Chicken Stock, Parmesan, Butter" },
+            { id: 58, name: "Alfredo Pasta", category: "pasta", price: 237.00, desc: "Fettuccine, Cream, Parmesan, Butter, Garlic" },
+            { id: 59, name: "Beef Lasagna", category: "pasta", price: 274.00, desc: "Lasagna Sheets, Minced Beef, Tomato Sauce, Béchamel" },
+
+            { id: 80, name: "Fruit Tart", category: "desserts", price: 138.00, desc: "Biscuit, Butter, Yogurt, Fruit, Jam, Vanilla" },
+            { id: 81, name: "Chocolate Tart", category: "desserts", price: 134.00, desc: "Biscuit, Butter, Yogurt, Chocolate" },
+            { id: 82, name: "Rice Pudding", category: "desserts", price: 85.00, desc: "Rice, Milk, Sugar, Vanilla" },
+            { id: 83, name: "Om Ali", category: "desserts", price: 130.00, desc: "Puff Pastry, Milk, Cream, Nuts" },
+            { id: 84, name: "Mochi", category: "desserts", price: 70.00, desc: "Rice Flour, Sugar, Filling" },
+            { id: 85, name: "Pancakes", category: "desserts", price: 93.00, desc: "Flour, Egg, Butter, Milk" },
+            { id: 86, name: "Nabulsi Kunafa", category: "desserts", price: 138.00, desc: "Kunafa Dough, Nabulsi Cheese, Pistachio" },
+
+            { id: 1, name: "Pistachio Latte", category: "coffee", price: 32.00, desc: "Rich espresso and milk infused with real pistachio sauce." },
+            { id: 2, name: "Iced Pistachio Latte", category: "coffee", price: 34.00, desc: "Rich espresso and cold milk infused with real pistachio sauce." },
+            { id: 3, name: "Spanish Latte", category: "coffee", price: 28.00, desc: "A sweet and creamy espresso drink made with condensed milk." },
+            { id: 4, name: "Iced Spanish Latte", category: "coffee", price: 30.00, desc: "Sweet, creamy iced espresso with condensed milk." },
+
+            { id: 87, name: "Kromadid", category: "drinks", price: 83.00, desc: "Included" },
+            { id: 88, name: "Abrieh Drink", category: "drinks", price: 105.00, desc: "Included" },
+            { id: 89, name: "Nubian Tea", category: "drinks", price: 100.00, desc: "Included" },
+            { id: 90, name: "Milk Tea", category: "drinks", price: 83.00, desc: "Included" },
+            { id: 91, name: "Peppermint Tea", category: "drinks", price: 52.00, desc: "Included" },
+            { id: 92, name: "Nescafe", category: "drinks", price: 86.00, desc: "Included" },
+            { id: 93, name: "Café Latte", category: "drinks", price: 99.00, desc: "Included" },
+            { id: 94, name: "Frappuccino", category: "drinks", price: 114.00, desc: "Included" },
+            { id: 95, name: "Mocha", category: "drinks", price: 105.00, desc: "Included" },
+            { id: 96, name: "Cappuccino", category: "drinks", price: 106.00, desc: "Included" },
+            { id: 97, name: "Macchiato", category: "drinks", price: 93.00, desc: "Included" },
+            { id: 98, name: "Hot Chocolate", category: "drinks", price: 98.00, desc: "Included" },
+            { id: 99, name: "Iced Coffee", category: "drinks", price: 111.00, desc: "Included" },
+            { id: 100, name: "Iced Latte", category: "drinks", price: 85.00, desc: "Included" }
+        ];
+
+        const orderQuantities = {};
+        menuData.forEach(item => {
+            orderQuantities[item.id] = 0;
+        });
+
+        const packageSelect = document.getElementById('packageSelect');
+
+        function getSelectedPackage() {
+            return packageSelect ? packageSelect.value : 'all-inclusive';
+        }
+
+        if (packageSelect) {
+            packageSelect.addEventListener('change', () => {
+                // Reset all quantities when switching packages
+                menuData.forEach(item => {
+                    orderQuantities[item.id] = 0;
+                });
+                renderMenu(document.querySelector('.tab-btn.active').getAttribute('data-category'));
+                calculateTotals();
+            });
+        }
+
+        const itemsBody = document.getElementById('menu-items-body');
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const cartItemsList = document.getElementById('cart-items');
+        const subtotalValEl = document.getElementById('subtotal-val');
+        const serviceValEl = document.getElementById('service-val');
+        const vatValEl = document.getElementById('vat-val');
+        const totalValEl = document.getElementById('total-val');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const orderToast = document.getElementById('order-toast');
+
+        function renderMenu(category = 'all') {
+            itemsBody.innerHTML = '';
+
+            const filteredItems = category === 'all'
+                ? menuData
+                : menuData.filter(item => item.category === category);
+
+            filteredItems.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.setAttribute('data-id', item.id);
+
+                const currentQty = orderQuantities[item.id];
+                const itemTotal = (currentQty * item.price).toFixed(2);
+                const priceFormatted = item.price > 0 ? `${item.price.toFixed(2)} EGP` : 'Included';
+                const totalFormatted = currentQty > 0 ? `${itemTotal} EGP` : '0.00 EGP';
+
+                tr.innerHTML = `
+                    <td>
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">${item.name}</div>
+                            <div class="menu-item-desc">${item.desc}</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="menu-item-price">${priceFormatted}</div>
+                    </td>
+                    <td>
+                        <div class="quantity-controller">
+                            <button class="qty-btn minus" onclick="updateQty(${item.id}, -1)">-</button>
+                            <input type="number" class="qty-input" value="${currentQty}" readonly id="qty-input-${item.id}">
+                            <button class="qty-btn plus" onclick="updateQty(${item.id}, 1)">+</button>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="menu-item-total" id="item-total-${item.id}">${totalFormatted}</div>
+                    </td>
+                `;
+                itemsBody.appendChild(tr);
+            });
+        }
+
+        window.showToastMessage = function (message, type = 'error') {
+            const existing = document.getElementById('validation-toast');
+            if (existing) existing.remove();
+
+            const toast = document.createElement('div');
+            toast.id = 'validation-toast';
+            toast.style.cssText = `
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                background: ${type === 'error' ? '#ef4444' : '#10b981'};
+                color: white;
+                padding: 16px 24px;
+                border-radius: 12px;
+                font-family: var(--font-en);
+                font-weight: 700;
+                font-size: 0.95rem;
+                box-shadow: var(--shadow-lg);
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                z-index: 99999;
+                transform: translateY(100px);
+                opacity: 0;
+                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            `;
+            toast.innerHTML = `<i class="fa-solid ${type === 'error' ? 'fa-triangle-exclamation' : 'fa-circle-check'}"></i> ${message}`;
+            document.body.appendChild(toast);
+
+            requestAnimationFrame(() => {
+                toast.style.transform = 'translateY(0)';
+                toast.style.opacity = '1';
+            });
+
+            setTimeout(() => {
+                toast.style.transform = 'translateY(100px)';
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 400);
+            }, 3500);
+        };
+
+        window.updateQty = function (id, delta) {
+            const pkg = getSelectedPackage();
+            const item = menuData.find(m => m.id === id);
+
+            if (pkg === 'bed-only' && delta > 0) {
+                showToastMessage('Under Bed Only package, dining is not included.', 'error');
+                return;
+            }
+
+            const currentQty = orderQuantities[id];
+            let newQty = currentQty + delta;
+            if (newQty < 0) newQty = 0;
+
+            if (delta > 0) {
+                if (pkg === 'all-inclusive') {
+                    // Check items in this category
+                    let categoryCount = 0;
+                    menuData.forEach(m => {
+                        if (m.category === item.category) {
+                            categoryCount += orderQuantities[m.id];
+                        }
+                    });
+                    if (categoryCount >= 4) {
+                        showToastMessage('All-Inclusive package is limited to 4 items per category.', 'error');
+                        return;
+                    }
+                } else if (pkg === 'bed-breakfast') {
+                    // Allowed: drinks and (Fruit Tart / Chocolate Tart)
+                    const isDrink = item.category === 'drinks' || item.category === 'coffee';
+                    const isAllowedDessert = item.category === 'desserts' && (item.name === 'Fruit Tart' || item.name === 'Chocolate Tart');
+
+                    if (!isDrink && !isAllowedDessert) {
+                        showToastMessage('Bed & Breakfast only includes Drinks and specific Tarts.', 'error');
+                        return;
+                    }
+
+                    if (isDrink) {
+                        let totalDrinks = 0;
+                        menuData.forEach(m => {
+                            if (m.category === 'drinks' || m.category === 'coffee') {
+                                totalDrinks += orderQuantities[m.id];
+                            }
+                        });
+                        if (totalDrinks >= 4) {
+                            showToastMessage('Bed & Breakfast package is limited to 4 Drinks in total.', 'error');
+                            return;
+                        }
+                    }
+
+                    if (isAllowedDessert) {
+                        let totalTarts = 0;
+                        menuData.forEach(m => {
+                            if (m.category === 'desserts' && (m.name === 'Fruit Tart' || m.name === 'Chocolate Tart')) {
+                                totalTarts += orderQuantities[m.id];
+                            }
+                        });
+                        if (totalTarts >= 4) {
+                            showToastMessage('Bed & Breakfast package is limited to 4 Tarts in total.', 'error');
+                            return;
+                        }
+                    }
+                }
+            }
+
+            orderQuantities[id] = newQty;
+
+            const inputEl = document.getElementById(`qty-input-${id}`);
+            if (inputEl) {
+                inputEl.value = newQty;
+            }
+
+            const totalEl = document.getElementById(`item-total-${id}`);
+            if (totalEl) {
+                const itemSubtotal = (newQty * item.price).toFixed(2);
+                totalEl.textContent = newQty > 0 ? `${itemSubtotal} EGP` : '0.00 EGP';
+            }
+
+            calculateTotals();
+        };
+
+        function calculateTotals() {
+            let subtotal = 0;
+            let totalItemsCount = 0;
+            cartItemsList.innerHTML = '';
+
+            menuData.forEach(item => {
+                const qty = orderQuantities[item.id];
+                if (qty > 0) {
+                    subtotal += qty * item.price;
+                    totalItemsCount += qty;
+
+                    const row = document.createElement('div');
+                    row.className = 'cart-item-row';
+                    const itemTotalFormatted = item.price > 0 ? `${(qty * item.price).toFixed(2)} EGP` : 'Included';
+                    row.innerHTML = `
+                        <div class="cart-item-name-qty">
+                            <span class="name">${item.name}</span>
+                            <span class="qty">Qty: ${qty}</span>
+                        </div>
+                        <div class="cart-item-price-sub">${itemTotalFormatted}</div>
+                    `;
+                    cartItemsList.appendChild(row);
+                }
+            });
+
+            if (totalItemsCount === 0) {
+                cartItemsList.innerHTML = `
+                    <div class="cart-empty-state">
+                        <i class="fa-solid fa-bowl-food"></i>
+                        <p>No items selected. Add some delicious dishes to your order!</p>
+                    </div>
+                `;
+                checkoutBtn.disabled = true;
+            } else {
+                checkoutBtn.disabled = false;
+            }
+
+            const serviceCharge = subtotal * 0.10;
+            const vat = subtotal * 0.05;
+            const grandTotal = subtotal + serviceCharge + vat;
+
+            subtotalValEl.textContent = `${subtotal.toFixed(2)} EGP`;
+            serviceValEl.textContent = `${serviceCharge.toFixed(2)} EGP`;
+            vatValEl.textContent = `${vat.toFixed(2)} EGP`;
+            totalValEl.textContent = `${grandTotal.toFixed(2)} EGP`;
+        }
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderMenu(btn.getAttribute('data-category'));
+            });
+        });
+
+        checkoutBtn.addEventListener('click', () => {
+            orderToast.classList.add('show');
+            setTimeout(() => {
+                orderToast.classList.remove('show');
+            }, 3000);
+
+            menuData.forEach(item => {
+                orderQuantities[item.id] = 0;
+            });
+            renderMenu(document.querySelector('.tab-btn.active').getAttribute('data-category'));
+            calculateTotals();
+        });
+
+        // Read URL parameters on initialization
+        const urlParams = new URLSearchParams(window.location.search);
+        const packageParam = urlParams.get('package');
+        if (packageParam && packageSelect) {
+            const validOptions = ['all-inclusive', 'bed-breakfast', 'bed-only'];
+            if (validOptions.includes(packageParam)) {
+                packageSelect.value = packageParam;
+            }
+        }
+
+        renderMenu('all');
+    </script>
+</body>
+
+</html>
