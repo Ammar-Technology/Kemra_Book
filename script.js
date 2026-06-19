@@ -304,7 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update summary stats — Grand Total is always fixed at 40,000 EGP
         if (statDest)  statDest.textContent  = selected.length;
-        if (statTotal) statTotal.textContent = '40,000 EGP';
+        if (statTotal) statTotal.textContent = '35,000 EGP';
 
         // Show content, hide empty state
         bookedEmpty.style.display = 'none';
@@ -484,7 +484,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <div>
                         <div style="font-size:0.72rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.8px;">Grand Total</div>
-                        <div style="font-size:1rem;font-weight:800;color:#4ade80;">40,000 EGP</div>
+                        <div style="font-size:1rem;font-weight:800;color:#4ade80;">35,000 EGP</div>
                     </div>
                 </div>
             </div>
